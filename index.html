@@ -468,10 +468,6 @@ body.opened .card { animation: rise .9s var(--ease) both; }
             </div>
           </div>
 
-          <div class="field">
-            <label for="message"><span data-i18n="msgLabel">رسالة للعروسين</span> <span class="hint" data-i18n="optional">(اختياري)</span></label>
-            <textarea id="message" name="message" maxlength="500" data-i18n-ph="msgPh" placeholder="تهنئة أو ملاحظة…"></textarea>
-          </div>
 
           <p class="error" id="error" role="alert" hidden></p>
 
@@ -724,7 +720,7 @@ form.addEventListener('submit', async (e) => {
     name,
     attending: att,
     adults: att === 'yes' ? adults : 0,
-    message: $('message').value.trim(),
+    message: '',
     lang,
     website: $('website').value,
   };
@@ -759,7 +755,6 @@ $('change').addEventListener('click', () => {
   const r = lastReply;
   if (r) {
     $('name').value = r.name;
-    $('message').value = r.message || '';
     const radio = $(r.attending === 'yes' ? 'att-yes' : 'att-no');
     radio.checked = true;
     adults = r.adults || 1;
